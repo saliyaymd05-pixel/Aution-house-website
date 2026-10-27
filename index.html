@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuctionHouse — The Art of Exceptional Auctions</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo" id="logo-btn">
+                <i class="fa-solid fa-landmark"></i> AuctionHouse
+            </a>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#home" class="nav-item active" data-page="home">Home</a></li>
+                <li><a href="#auctions" class="nav-item" data-page="auctions">Auctions</a></li>
+                <li><a href="#categories" class="nav-item" data-page="categories">Categories</a></li>
+                <li><a href="#register" class="nav-item" data-page="register">Register to Bid</a></li>
+                <li><a href="#dashboard" class="nav-item" data-page="dashboard">Dashboard</a></li>
+                <li><a href="#about" class="nav-item" data-page="about">About Us</a></li>
+                <li><a href="#contact" class="nav-item" data-page="contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="icon-btn" id="theme-toggle-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                </button>
+                <button class="icon-btn" id="watchlist-nav-btn" title="Watchlist">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="badge-count" id="watchlist-count">0</span>
+                </button>
+                <button class="btn-gold" id="auth-nav-btn">Login / Register</button>
+                <button class="mobile-toggle" id="mobile-toggle-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- HOME SECTION -->
+    <section id="page-home" class="page-section active">
+        <div class="hero">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fa-solid fa-crown"></i> Curated Fine Art & Rare Collectibles</span>
+                <h1>Discover Rarity. <span>Own a Story.</span></h1>
+                <p>Explore extraordinary collectibles, timeless masterpieces, and rare treasures in an online auction experience crafted for discerning collectors worldwide.</p>
+                <div class="hero-buttons">
+                    <button class="btn-gold" id="hero-explore-btn">Explore Live Auctions</button>
+                    <button class="btn-outline" id="hero-bidder-btn">Become a Bidder</button>
+                </div>
+            </div>
+            <div class="hero-banner-card">
+                  <img src="C:\Users\cw\OneDrive\Desktop\aution\art.png"alt="Featured Masterpiece" id="hero-img">
+                         alt="Claude Monet — Water Lilies Impressionist Study" 
+                         id="hero-img">
+                    <div class="hero-card-footer">
+                        <div>
+                          <span class="hero-sub">ART & PAINTINGS — IMPRESSIONISM</span>
+                          <h4 class="hero-title">Claude Monet — Water Lilies Impressionist Study (1906)</h4>
+                        </div>
+                         <div>
+                                <span class="price-label">Current Highest Bid</span>
+                                 <div class="price-val">₹18,51,000</div>
+                           </div>
+                           <button class="btn-gold hero-view-btn" data-id="1">Place Bid</button>
+                   </div>
+             </div>
+        <!-- Trust Statistics Bar -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>30+</h3>
+                <p>Exclusive Collectibles</p>
+            </div>
+            <div class="stat-card">
+                <h3>1,420+</h3>
+                <p>Registered Collectors</p>
+            </div>
+            <div class="stat-card">
+                <h3>₹45Cr+</h3>
+                <p>Successful Auctions</p>
+            </div>
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Transparent Bidding</p>
+            </div>
+        </div>
+
+        <!-- Featured Auctions Grid -->
+        <div class="section-block">
+            <div class="section-header">
+                <div>
+                    <h2>Live Featured Auctions</h2>
+                    <p>Current high-demand collector items closing soon</p>
+                </div>
+                <button class="btn-outline" id="view-all-featured-btn">View All Auctions →</button>
+            </div>
+            <div class="auction-grid" id="featured-auctions-grid"></div>
+        </div>
+    </section>
+
+    <!-- AUCTION LISTING SECTION -->
+    <section id="page-auctions" class="page-section">
+        <div class="section-header">
+            <div>
+                <h2>Explore Auction Inventory</h2>
+                <p>Browse our curated collection of rare lots and artifacts</p>
+            </div>
+            <span id="results-count" class="results-badge">Showing items</span>
+        </div>
+
+        <!-- Filters Bar -->
+        <div class="filters-bar">
+            <div class="filter-group">
+                <label for="search-input">Search Keyword</label>
+                <input type="text" id="search-input" placeholder="Search item title, artist, seller...">
+            </div>
+            <div class="filter-group">
+                <label for="filter-category">Category</label>
+                <select id="filter-category">
+                    <option value="all">All Categories</option>
+                    <option value="Art & Paintings">Art & Paintings</option>
+                    <option value="Rare Books & Manuscripts">Rare Books & Manuscripts</option>
+                    <option value="Antiques & Collectibles">Antiques & Collectibles</option>
+                    <option value="Luxury & Rare Watches">Luxury & Rare Watches</option>
+                    <option value="Classic & Vintage Automobiles">Classic & Vintage Automobiles</option>
+                    <option value="Jewellery & Precious Collectibles">Jewellery & Precious Collectibles</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort-by">Sort By</label>
+                <select id="sort-by">
+                    <option value="ending-soon">Ending Soonest</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest Listed</option>
+                </select>
+            </div>
+            <div class="filter-group filter-btn-group">
+                <label>&nbsp;</label>
+                <button class="btn-outline" id="reset-filters-btn">Reset Filters</button>
+            </div>
+        </div>
+
+        <div class="auction-grid" id="all-auctions-grid"></div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section id="page-categories" class="page-section">
+        <div class="section-header">
+            <div>
+                <h2>Auction Categories</h2>
+                <p>Explore departments curated by specialized appraisers</p>
+            </div>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card" data-cat="Art & Paintings">
+                <i class="fa-solid fa-palette"></i>
+                <h3>🖼️ Art & Paintings</h3>
+                <ul>
+                    <li>Modern Art</li>
+                    <li>Classical Paintings</li>
+                    <li>Contemporary Art</li>
+                    <li>Sculptures</li>
+                </ul>
+                <button class="btn-outline cat-explore-btn">Explore Category</button>
+            </div>
+            <div class="category-card" data-cat="Antiques & Collectibles">
+                <i class="fa-solid fa-wine-glass"></i>
+                <h3>🏺 Antiques & Collectibles</h3>
+                <ul>
+                    <li>Vintage Furniture</li>
+                    <li>Ancient Coins</li>
+                    <li>Rare Books</li>
+                    <li>Historical Artifacts</li>
+                </ul>
+                <button class="btn-outline cat-explore-btn">Explore Category</button>
+            </div>
+            <div class="category-card" data-cat="Jewellery & Precious Collectibles">
+                <i class="fa-solid fa-gem"></i>
+                <h3>💎 Jewelry & Watches</h3>
+                <ul>
+                    <li>Diamond Jewelry</li>
+                    <li>Luxury Watches</li>
+                    <li>Gemstones</li>
+                    <li>Vintage Jewelry</li>
+                </ul>
+                <button class="btn-outline cat-explore-btn">Explore Category</button>
+            </div>
+            <div class="category-card" data-cat="Classic & Vintage Automobiles">
+                <i class="fa-solid fa-car"></i>
+                <h3>🏎️ Luxury & Automobiles</h3>
+                <ul>
+                    <li>Classic Cars</li>
+                    <li>Luxury Vehicles</li>
+                    <li>Automobilia</li>
+                    <li>Vintage Motorcycles</li>
+                </ul>
+                <button class="btn-outline cat-explore-btn">Explore Category</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTER SECTION -->
+    <section id="page-register" class="page-section">
+        <div class="form-card-wrapper">
+            <h2>Bidder Registration & Login</h2>
+            <p class="form-subtext">Join AuctionHouse to place live bids, list consignments, and build your watchlist.</p>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" placeholder="collector@example.com" required>
+                </div>
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="reg-pass">Password</label>
+                        <input type="password" id="reg-pass" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-pass-confirm">Confirm Password</label>
+                        <input type="password" id="reg-pass-confirm" placeholder="••••••••" required>
+                    </div>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the demonstration terms and conditions & bidder agreement.</label>
+                </div>
+                <button type="submit" class="btn-gold full-btn">Register & Login</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- DASHBOARD SECTION -->
+    <section id="page-dashboard" class="page-section">
+        <div class="dashboard-grid">
+            <div class="dash-sidebar">
+                <h3 id="dash-username">Collector Dashboard</h3>
+                <ul class="dash-menu">
+                    <li><button id="dtab-overview" class="dash-tab-btn active" data-tab="overview"><i class="fa-solid fa-chart-line"></i> Overview</button></li>
+                    <li><button id="dtab-bids" class="dash-tab-btn" data-tab="bids"><i class="fa-solid fa-gavel"></i> My Bids</button></li>
+                    <li><button id="dtab-watchlist" class="dash-tab-btn" data-tab="watchlist"><i class="fa-solid fa-heart"></i> Watchlist</button></li>
+                    <li><button id="dtab-seller" class="dash-tab-btn" data-tab="seller"><i class="fa-solid fa-plus-circle"></i> List New Item</button></li>
+                    <li><button id="logout-btn" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></li>
+                </ul>
+            </div>
+            <div class="dash-content" id="dash-content-area"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="page-about" class="page-section">
+        <div class="content-card">
+            <h2>The AuctionHouse Heritage</h2>
+            <p>AuctionHouse was founded to bridge the world of fine art, rare manuscripts, and luxury collectibles with collectors through a transparent, seamless digital platform.</p>
+            <h3>Our Values</h3>
+            <ul>
+                <li><strong>Curated Excellence:</strong> Every lot undergoes rigorous aesthetic and historical appraisal.</li>
+                <li><strong>Transparent Bidding:</strong> Real-time bidding logs, clear increment rules, and verified bidder tracking.</li>
+                <li><strong>Collector Security:</strong> Safe browsing, robust watchlist tracking, and instant notifications.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="page-contact" class="page-section">
+        <div class="form-card-wrapper">
+            <h2>Inquire with Our Specialists</h2>
+            <p class="form-subtext">Have questions regarding an active lot or consignment? Send us an inquiry.</p>
+            <form id="contact-form">
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name</label>
+                        <input type="text" id="contact-name" placeholder="Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" placeholder="jane@example.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contact-subject">Subject / Lot Inquiry</label>
+                    <input type="text" id="contact-subject" placeholder="Regarding Lot #1" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-msg">Message</label>
+                    <textarea id="contact-msg" rows="5" placeholder="Write your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn-gold full-btn">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Auction Details Modal -->
+    <div class="modal-overlay" id="auction-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modal-title">Auction Details</h3>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body-content"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#home" class="logo">
+                    <i class="fa-solid fa-landmark"></i> AuctionHouse
+                </a>
+                <p>Discover Rarity. Own a Story. The premier international platform for fine art and luxury collectibles.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home" class="footer-link" data-page="home">Home</a></li>
+                    <li><a href="#auctions" class="footer-link" data-page="auctions">Live Auctions</a></li>
+                    <li><a href="#categories" class="footer-link" data-page="categories">Categories</a></li>
+                    <li><a href="#register" class="footer-link" data-page="register">Registration</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#auctions" class="footer-cat-link" data-cat="Art & Paintings">Art & Paintings</a></li>
+                    <li><a href="#auctions" class="footer-cat-link" data-cat="Rare Books & Manuscripts">Rare Books</a></li>
+                    <li><a href="#auctions" class="footer-cat-link" data-cat="Luxury & Rare Watches">Luxury Watches</a></li>
+                    <li><a href="#auctions" class="footer-cat-link" data-cat="Classic & Vintage Automobiles">Automobiles</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Gallery Office</h4>
+                <p>Kasturba Road, Lavelle Road Area<br>Bengaluru, Karnataka 560001<br>Email: concierge@auctionhouse-demo.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AuctionHouse Demonstration Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>
